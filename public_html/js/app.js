@@ -6,15 +6,28 @@
 
 (function (angular) {
     
-    var app = angular.module('Questions', ['ngAnimate', "chart.js"]);
-    
-    app.controller('Controller1', ['$scope', '$http', function ($scope, $http) {
-
+    var app = angular.module('Questions', ['ngAnimate', 'ui.bootstrap', 'chart.js', 'angularModalService']);
+    app.controller('AlertModalCtlr', ['$scope', '$http', 'cuestionario', function ($scope, $http, cuestionario) {
+            var vm= this;
+            vm.cuestionario=cuestionario;
+        }]);
+    app.controller('Controller1', ['$scope', '$http','ModalService', function ($scope, $http, ModalService) {
+            $scope.modal_agregar_cuestionario = function(){
+                console.log("hola");
+                ModalService.showModal({ templateUrl: 'js/Views/modal.html' , controller : "AlertModalCtlr", controllerAs: "vm"})
+                    .then( function( modal ) {modal.element.modal(); });
+            };
+            $scope.modal_cuestionario = function(cuestionario, index){
+                console.log(cuestionario);
+                ModalService.showModal({ templateUrl: 'js/Views/modal.html' , controller : "AlertModalCtlr", controllerAs: "vm", inputs: {cuestionario:cuestionario}})
+                    .then( function( modal ) {modal.element.modal(); });
+                $scope.opciones_cuestionario[index] = !$scope.opciones_cuestionario[index];    
+            };
             $scope.cuestionario;
             $scope.selected = function (cuestionario) {
                 $scope.cuestionario = cuestionario;
                 console.log(cuestionario)
-            }
+            };
             $(".button-collapse").sideNav();
             $('.modal-trigger').leanModal();
             $scope.mostrar_pregunta = [];
@@ -27,7 +40,7 @@
                 $scope.opciones_cuestionario[index] = !$scope.opciones_cuestionario[index];
             };
             $scope.cuestionarios = [];
-            $scope.chart_options = "{scales: {yAxes: [{ticks: {beginAtZero:true}}]}}"
+            $scope.chart_options = "{scales: {yAxes: [{ticks: {beginAtZero:true}}]}}";
             $scope.respuestas_totales = 0;
             $scope.total = 0;
             $scope.labels = [];
@@ -51,20 +64,18 @@
                         var pregunta_iteradora = {
                             user_id: 0,
                             valor: "",
-                            respuestas: [],
-                            resultados: [],
+                            respuestas: [],                            
                             etiquetas: []
                         };
                         pregunta_iteradora = pregunta;
                         var iterador = 1;
                         angular.forEach(pregunta.respuestas, function (respuesta) {
 
-                            datos.push(respuesta.resultado);
+                            
                             etiquetas.push(iterador);
 
                             iterador++;
-                        });
-                        pregunta_iteradora["resultados"] = datos;
+                        });                        
                         pregunta_iteradora["user_id"] = cuestionario.user_id;
                         pregunta_iteradora["etiquetas"] = etiquetas;
                         preguntas.push(pregunta_iteradora);
@@ -117,5 +128,17 @@
                 $scope.opciones_cuestionario_function(index);
             };
         }]);
+    
+          app.controller('ModalAController', function($scope ,$uibModal,$uibModalInstance , alumnoResource ){
+
+  //fin de crear alumno
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+})
+          
+            
 })(angular);
 

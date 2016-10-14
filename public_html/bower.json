@@ -1,5 +1,5 @@
 {
-  "name": "Questions",
+  "name": "questions",
   "description": "Questions",
   "main": "index.html",
   "authors": [
@@ -16,6 +16,9 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-material-design": "^4.0.2"
+    "bootstrap-material-design": "^4.0.2",
+    "jquery": "^2.2.3", 
+    "bootstrap": "^3.3.6",
+    "angular-modal-service": "^0.10.1"
   }
 }
