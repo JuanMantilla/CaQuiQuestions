@@ -8,7 +8,7 @@ class Questionary extends Model
 {
     protected $table = 'questionaries';
     protected $fillable = [
-        'name', 'user_id'
+        'name', 'user_id', 'state'
     ];
 
     public function user()
