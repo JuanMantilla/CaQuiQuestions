@@ -13,6 +13,7 @@
 		<link rel="stylesheet" href="/css/profile.min.css">
 		<link rel="stylesheet" href="/css/team.min.css">
 		<link rel="stylesheet" href="/css/select2.min.css">
+		<link rel="stylesheet" href="/css/icheck.min.css">
 		<link rel="stylesheet" href="/css/override.css">
 		<!--TOAST CSS-->
 		<link rel="stylesheet" href="/css/angular-toastr.css">
@@ -72,6 +73,7 @@
 
 	<!-- Module Controllers -->
 	<script src="/js/app/controllers/loginController.js"></script>
+	<script src="/js/app/controllers/mainController.js"></script>
 
 
 	<!-- Module App -->

@@ -6,21 +6,21 @@ var controllerModule = angular.module('AppControllers');
 controllerModule
     .controller('loginController', ['$scope', 'toastr', '$state', '$rootScope', 'jwtHelper', 'PermissionStore', 'RoleStore',
         function ($scope, toastr, $state, $rootScope, jwtHelper,PermissionStore, RoleStore) {
-        //     $scope.login=function (usuario) {
+             $scope.login=function (usuario) {
 
         //         loginService.auth(usuario).then(function (response) {
         //             var token=response.data.token;
         //             if(!localStorage.getItem(TOKEN_KEY)){
         //                 localStorage.setItem(TOKEN_KEY, token);
         //                 // $scope.getUser();
-        //                 //$state.go('main');
+                            $state.go('main');
         //             }
 
         //         },function (response) {
         //             $scope.usuario={};
         //             toastr.error('Error', 'Datos de usuario invalidos');
         //         });
-        //     };
+             };
 
 
         // $rootScope.usuario = {};

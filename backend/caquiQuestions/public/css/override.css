@@ -1175,3 +1175,13 @@ input.cmn-toggle-round:checked + label:after {
 .tabs-database .tab-content{
     margin-top: 20px;
 }
+
+
+
+
+.question-list{
+    list-style: none;
+}
+.btn-add-answer{
+    margin-top: 20px;
+}
