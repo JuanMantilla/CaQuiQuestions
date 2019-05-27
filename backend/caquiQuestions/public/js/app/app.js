@@ -65,24 +65,6 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		target: 'body'
 	});
 
-		$httpProvider.interceptors.push(function (toastr, $location, $q, jwtHelper) {
-			return {
-				request: function (conf) {
-					var token = window.localStorage.getItem(TOKEN_KEY);
-					if (token && !jwtHelper.isTokenExpired(token)) {
-
-						conf.headers.Authorization = 'Bearer ' + token;
-					} else {
-
-						//window.localStorage.removeItem(TOKEN_KEY);
-						//$location.path("/login");
-
-					}
-					return conf;
-				}
-			}
-		});
-
 		$urlRouterProvider.otherwise('/login');
 
 
@@ -94,11 +76,17 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		})
 		.state('login', {
 			url: '/login',
-			cache: false,
 			templateUrl: '/js/app/views/login.html',
 			controller: 'loginController',
 			authenticate: false
-		})
+		});
+
+	modalStateProvider.state('main.createQuestionary', {
+		url: '/create/questionary',
+		templateUrl: '/js/app/views/questionaries/createQuestionary.html',
+		controller: 'questionaryController',
+		size: 'lg'
+	});
 		
 		
 }]);

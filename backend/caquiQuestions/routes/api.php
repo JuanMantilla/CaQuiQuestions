@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // Route::get('user/{id}/questionaries', 'Questionaries@getByUser')->middleware('cors');
 Route::get('user/{id}/questionaries', array('middleware' => 'cors', 'uses' => 'Questionaries@getByUser'));
 Route::get('user/', 'User@get');
+Route::resource('questionary', 'Questionaries');
+

@@ -1,13 +1,7 @@
-<nav
-    class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse"
-    role="navigation"
->
+<nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse" role="navigation">
     <div class="navbar-header">
-        <div
-            class="navbar-brand navbar-brand-center site-gridmenu-toggle active"
-            data-toggle="gridmenu"
-            aria-expanded="true"
-        >
+        <div class="navbar-brand navbar-brand-center site-gridmenu-toggle active" data-toggle="gridmenu"
+            aria-expanded="true">
             <!-- <img class="navbar-brand-logo" src="assets/images/logo.png" title="Remark"> -->
 
             <span class="navbar-brand-text hidden-xs-down">CaQui Questions!</span>
@@ -17,37 +11,18 @@
     <div class="navbar-container container-fluid">
         <!-- Navbar Collapse -->
 
-        <div
-            class="collapse navbar-collapse navbar-collapse-toolbar"
-            id="site-navbar-collapse"
-        ></div>
+        <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse"></div>
 
-        <div
-            class="collapse navbar-search-overlap"
-            id="site-navbar-search"
-        >
+        <div class="collapse navbar-search-overlap" id="site-navbar-search">
             <form role="search">
                 <div class="form-group">
                     <div class="input-search">
-                        <i
-                            class="input-search-icon md-search"
-                            aria-hidden="true"
-                        ></i>
+                        <i class="input-search-icon md-search" aria-hidden="true"></i>
 
-                        <input
-                            type="text"
-                            class="form-control"
-                            name="site-search"
-                            placeholder="Search..."
-                        ></input>
+                        <input type="text" class="form-control" name="site-search" placeholder="Search...">
 
-                        <button
-                            type="button"
-                            class="input-search-close icon md-close"
-                            data-target="#site-navbar-search"
-                            data-toggle="collapse"
-                            aria-label="Close"
-                        ></button>
+                        <button type="button" class="input-search-close icon md-close" data-target="#site-navbar-search"
+                            data-toggle="collapse" aria-label="Close"></button>
                     </div>
                 </div>
             </form>
@@ -59,10 +34,7 @@
 
 <!-- Page -->
 
-<div
-    class="page animation-fade page-profile"
-    ui-view="ui-view"
->
+<div class="page animation-fade page-profile" ui-view="ui-view">
     <div class="page-content container-fluid">
         <div class="row">
             <div class="col-lg-3">
@@ -71,14 +43,8 @@
                 <div class="widget widget-shadow text-center">
                     <div class="widget-header">
                         <div class="widget-header-content">
-                            <a
-                                class="avatar avatar-lg"
-                                href="javascript:void(0)"
-                            >
-                                <img
-                                    alt="..."
-                                    src="/img/profile.webp"
-                                >
+                            <a class="avatar avatar-lg" href="javascript:void(0)">
+                                <img alt="..." src="/img/profile.webp">
                             </a>
 
                             <h4 class="profile-user ng-binding">MARIA TERESA GOMEZ GUERRERO</h4>
@@ -92,16 +58,14 @@
 
                                 <abbr title="Direccion">Direccion:</abbr>
 
-                                CASTILLO CALLE 5a  # 13-76EDIF PINANGO apto 404
+                                CASTILLO CALLE 5a # 13-76EDIF PINANGO apto 404
 
                                 <br>
 
                                 <abbr title="Correo">Correo:</abbr>
 
-                                <a
-                                    href="mailto:T00001286@UTBVIRTUAL.EDU.CO"
-                                    class="ng-binding"
-                                >T00001286@UTBVIRTUAL.EDU.CO</a>
+                                <a href="mailto:T00001286@UTBVIRTUAL.EDU.CO"
+                                    class="ng-binding">T00001286@UTBVIRTUAL.EDU.CO</a>
 
                                 <br>
 
@@ -144,43 +108,23 @@
                 <div class="panel">
                     <div class="panel-body nav-tabs-animate">
                         <uib-tabset active="">
-                            <uib-tab
-                                index="0"
-                                heading="Questionarios"
-                            >
-                                <button
-                                    type="button"
-                                    class="btn btn-floating btn-danger btn-add-riesgo pull-right"
-                                >
-                                    <i
-                                        class="icon wb-plus"
-                                        aria-hidden="true"
-                                    ></i>
+                            <uib-tab index="0" heading="Questionarios">
+                                <button ui-sref="main.createQuestionary" type="button" class="btn btn-floating btn-danger btn-add-riesgo pull-right">
+                                    <i class="icon wb-plus" aria-hidden="true"></i>
                                 </button>
 
                                 <div class="tab-content animation-fade col-md-12 questionary">
 
-                                    <div
-                                        class="alert alert-info alert-dismissible"
-                                        role="alert"
-                                        ng-if="archivoPersonal.length == 0"
-                                    >
-                                        <i
-                                            class="icon  wb-info-circle"
-                                            aria-hidden="true"
-                                        ></i>
+                                    <div class="alert alert-info alert-dismissible" role="alert"
+                                        ng-if="archivoPersonal.length == 0">
+                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
                                         No hay cuestionarios agregados para este usuario
                                     </div>
 
                                     <div class="media is-loading">
                                         <div class="media-left">
-                                            <img
-                                                ng-if="archivo.usuarios_codigo"
-                                                src="/"
-                                                alt=""
-                                                class="avatar"
-                                            >
+                                            <img ng-if="archivo.usuarios_codigo" src="/" alt="" class="avatar">
 
                                             <i></i>
                                         </div>
@@ -190,16 +134,20 @@
                                                 <div class="col-md-12">
                                                     <h4 class="media-heading">Cuestionario #1</h4>
 
-                                                    <p
-                                                        class="name"
-                                                        ng-if="archivo.fecha_reporte"
-                                                    >
+                                                    <p class="name" ng-if="archivo.fecha_reporte">
                                                         Fecha de reporte:
                                                         {{archivo.fecha_reporte}}
                                                     </p>
 
                                                     <p class="name">
-                                                        Descripcion: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                        Descripcion: Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                        aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.
                                                     </p>
                                                 </div>
                                             </div>
@@ -208,16 +156,11 @@
 
                                     <div>
                                         <div class="pull-left btn-show-estrategias">
-                                            <button
-                                                type="button"
+                                            <button type="button"
                                                 ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
-                                                class="btn btn-outline btn-icon btn-primary btn-round"
-                                            >
-                                                <i
-                                                    class="icon wb-chevron-down"
-                                                    aria-hidden="true"
-                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"
-                                                ></i>
+                                                class="btn btn-outline btn-icon btn-primary btn-round">
+                                                <i class="icon wb-chevron-down" aria-hidden="true"
+                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -225,39 +168,24 @@
                                     <hr>
 
                                     <div uib-collapse="archivo.isShowEstrategias">
-                                        <div
-                                            class="tab-pane animation-fade active margin-top-35"
-                                            id="all_contacts"
-                                            role="tabpanel"
-                                        >
+                                        <div class="tab-pane animation-fade active margin-top-35" id="all_contacts"
+                                            role="tabpanel">
                                             <h4 class="example-title">Preguntas</h4>
 
-                                            <button
-                                                type="button"
-                                                ng-disabled="archivo.id==0"
+                                            <button type="button" ng-disabled="archivo.id==0"
                                                 ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right"
-                                            >
-                                                <i
-                                                    class="icon wb-plus"
-                                                    aria-hidden="true"
-                                                ></i>
+                                                class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
+                                                <i class="icon wb-plus" aria-hidden="true"></i>
                                             </button>
 
                                             <br>
 
                                             <ul class="list-group">
-                                                <div
-                                                    class="alert alert-info alert-dismissible"
-                                                    role="alert"
+                                                <div class="alert alert-info alert-dismissible" role="alert"
                                                     ng-if="ng-if"
-                                                    archivo.intervenciones.length="archivo.intervenciones.length"
-                                                >
+                                                    archivo.intervenciones.length="archivo.intervenciones.length">
                                                     <div">
-                                                        <i
-                                                            class="icon  wb-info-circle"
-                                                            aria-hidden="true"
-                                                        ></i>
+                                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
                                                         No hay preguntas en este cuestionario
                                                     </div">
@@ -292,16 +220,10 @@
                                                                         </li>
                                                                     </ul>
 
-                                                                    <button
-                                                                        type="button"
-                                                                        ng-disabled="archivo.id==0"
+                                                                    <button type="button" ng-disabled="archivo.id==0"
                                                                         ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                                        class="btn btn-floating btn-info btn-sm pull-left btn-add-answer"
-                                                                    >
-                                                                        <i
-                                                                            class="icon wb-plus"
-                                                                            aria-hidden="true"
-                                                                        ></i>
+                                                                        class="btn btn-floating btn-info btn-sm pull-left btn-add-answer">
+                                                                        <i class="icon wb-plus" aria-hidden="true"></i>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -318,27 +240,16 @@
                                 <div class="tab-content animation-fade col-md-12 questionary">
                                     <br>
 
-                                    <div
-                                        class="alert alert-info alert-dismissible"
-                                        role="alert"
-                                        ng-if="archivoPersonal.length == 0"
-                                    >
-                                        <i
-                                            class="icon  wb-info-circle"
-                                            aria-hidden="true"
-                                        ></i>
+                                    <div class="alert alert-info alert-dismissible" role="alert"
+                                        ng-if="archivoPersonal.length == 0">
+                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
                                         No hay cuestionarios agregados para este usuario
                                     </div>
 
                                     <div class="media is-loading">
                                         <div class="media-left">
-                                            <img
-                                                ng-if="archivo.usuarios_codigo"
-                                                src="/"
-                                                alt=""
-                                                class="avatar"
-                                            >
+                                            <img ng-if="archivo.usuarios_codigo" src="/" alt="" class="avatar">
 
                                             <i></i>
                                         </div>
@@ -348,16 +259,20 @@
                                                 <div class="col-md-12">
                                                     <h4 class="media-heading">Cuestionario #2</h4>
 
-                                                    <p
-                                                        class="name"
-                                                        ng-if="archivo.fecha_reporte"
-                                                    >
+                                                    <p class="name" ng-if="archivo.fecha_reporte">
                                                         Fecha de reporte:
                                                         {{archivo.fecha_reporte}}
                                                     </p>
 
                                                     <p class="name">
-                                                        Descripcion: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                                        Descripcion: Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                                                        aute irure dolor in reprehenderit in voluptate velit esse cillum
+                                                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                                                        cupidatat non proident, sunt in culpa qui officia deserunt
+                                                        mollit anim id est laborum.
                                                     </p>
                                                 </div>
                                             </div>
@@ -366,16 +281,11 @@
 
                                     <div>
                                         <div class="pull-left btn-show-estrategias">
-                                            <button
-                                                type="button"
+                                            <button type="button"
                                                 ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
-                                                class="btn btn-outline btn-icon btn-primary btn-round"
-                                            >
-                                                <i
-                                                    class="icon wb-chevron-down"
-                                                    aria-hidden="true"
-                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"
-                                                ></i>
+                                                class="btn btn-outline btn-icon btn-primary btn-round">
+                                                <i class="icon wb-chevron-down" aria-hidden="true"
+                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"></i>
                                             </button>
                                         </div>
                                     </div>
@@ -383,39 +293,24 @@
                                     <hr>
 
                                     <div uib-collapse="archivo.isShowEstrategias">
-                                        <div
-                                            class="tab-pane animation-fade active margin-top-35"
-                                            id="all_contacts"
-                                            role="tabpanel"
-                                        >
+                                        <div class="tab-pane animation-fade active margin-top-35" id="all_contacts"
+                                            role="tabpanel">
                                             <h4 class="example-title">Preguntas</h4>
 
-                                            <button
-                                                type="button"
-                                                ng-disabled="archivo.id==0"
+                                            <button type="button" ng-disabled="archivo.id==0"
                                                 ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right"
-                                            >
-                                                <i
-                                                    class="icon wb-plus"
-                                                    aria-hidden="true"
-                                                ></i>
+                                                class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
+                                                <i class="icon wb-plus" aria-hidden="true"></i>
                                             </button>
 
                                             <br>
 
                                             <ul class="list-group">
-                                                <div
-                                                    class="alert alert-info alert-dismissible"
-                                                    role="alert"
+                                                <div class="alert alert-info alert-dismissible" role="alert"
                                                     ng-if="ng-if"
-                                                    archivo.intervenciones.length="archivo.intervenciones.length"
-                                                >
+                                                    archivo.intervenciones.length="archivo.intervenciones.length">
                                                     <div">
-                                                        <i
-                                                            class="icon  wb-info-circle"
-                                                            aria-hidden="true"
-                                                        ></i>
+                                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
                                                         No hay preguntas en este cuestionario
                                                     </div">
@@ -450,16 +345,10 @@
                                                                         </li>
                                                                     </ul>
 
-                                                                    <button
-                                                                        type="button"
-                                                                        ng-disabled="archivo.id==0"
+                                                                    <button type="button" ng-disabled="archivo.id==0"
                                                                         ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                                        class="btn btn-floating btn-info btn-sm pull-left btn-add-answer"
-                                                                    >
-                                                                        <i
-                                                                            class="icon wb-plus"
-                                                                            aria-hidden="true"
-                                                                        ></i>
+                                                                        class="btn btn-floating btn-info btn-sm pull-left btn-add-answer">
+                                                                        <i class="icon wb-plus" aria-hidden="true"></i>
                                                                     </button>
                                                                 </div>
                                                             </div>
@@ -504,10 +393,7 @@
     </div>
 </footer>
 
-<script
-    type="text/ng-template"
-    id="alertas.html"
->
+<script type="text/ng-template" id="alertas.html">
     <div class="modal-dialog modal-top">
         <div class="modal-content">
             <div class="modal-header">
