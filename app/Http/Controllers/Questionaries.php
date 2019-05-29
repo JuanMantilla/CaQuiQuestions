@@ -10,7 +10,7 @@ use Illuminate\Routing\Route;
 class Questionaries extends Controller
 {
     public function getByUser($id){
-        $questionaries = User::find($id)->with(['questionaries.questions.answers'])->get();
+        $questionaries = User::find($id)->with(['questionaries.questions.answers'])->get()->first();
         return $questionaries;
     }
     

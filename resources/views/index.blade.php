@@ -70,6 +70,7 @@
 	<!-- Module Services -->
 	
 	<script src="/js/app/services/questionary.js"></script>
+	<script src="/js/app/services/user.js"></script>
 
 	<!-- Module Controllers -->
 	<script src="/js/app/controllers/loginController.js"></script>

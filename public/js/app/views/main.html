@@ -47,53 +47,16 @@
                                 <img alt="..." src="/img/profile.webp">
                             </a>
 
-                            <h4 class="profile-user ng-binding">MARIA TERESA GOMEZ GUERRERO</h4>
-
-                            <p class="profile-job ng-binding">DERECHO</p>
-
-                            <address class="ng-binding">
-                                <strong>Informacion de contacto</strong>
-
-                                <br>
-
-                                <abbr title="Direccion">Direccion:</abbr>
-
-                                CASTILLO CALLE 5a # 13-76EDIF PINANGO apto 404
-
-                                <br>
-
-                                <abbr title="Correo">Correo:</abbr>
-
-                                <a href="mailto:T00001286@UTBVIRTUAL.EDU.CO"
-                                    class="ng-binding">T00001286@UTBVIRTUAL.EDU.CO</a>
-
-                                <br>
-
-                                <abbr title="Telefono">Telefono:</abbr>
-
-                                575-6445756
-                            </address>
+                            <h4 class="profile-user ng-binding">{{user.name}}</h4>
                         </div>
                     </div>
 
                     <div class="widget-footer">
                         <div class="row no-space">
-                            <div class="col-xs-4">
-                                <strong class="profile-stat-count">Codigo</strong>
+                            <div class="col-xs-12">
+                                <strong class="profile-stat-count">Correo</strong>
 
-                                <span class="ng-binding">T00001286</span>
-                            </div>
-
-                            <div class="col-xs-4">
-                                <strong class="profile-stat-count">Edad</strong>
-
-                                <span class="ng-binding">56</span>
-                            </div>
-
-                            <div class="col-xs-4">
-                                <strong class="profile-stat-count">Sexo</strong>
-
-                                <span class="ng-binding">F</span>
+                                <span class="ng-binding">{{user.email}}</span>
                             </div>
                         </div>
                     </div>
@@ -113,10 +76,10 @@
                                     <i class="icon wb-plus" aria-hidden="true"></i>
                                 </button>
 
-                                <div class="tab-content animation-fade col-md-12 questionary">
+                                <div class="tab-content animation-fade col-md-12" ng-repeat="questionary in user.questionaries">
 
                                     <div class="alert alert-info alert-dismissible" role="alert"
-                                        ng-if="archivoPersonal.length == 0">
+                                        ng-if="user.questionaries.length == 0">
                                         <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
                                         No hay cuestionarios agregados para este usuario
@@ -132,22 +95,9 @@
                                         <div class="media-body">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <h4 class="media-heading">Cuestionario #1</h4>
-
-                                                    <p class="name" ng-if="archivo.fecha_reporte">
-                                                        Fecha de reporte:
-                                                        {{archivo.fecha_reporte}}
-                                                    </p>
-
+                                                    <h4 class="media-heading">{{questionary.name}}</h4>
                                                     <p class="name">
-                                                        Descripcion: Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                                                        aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                                        cupidatat non proident, sunt in culpa qui officia deserunt
-                                                        mollit anim id est laborum.
+                                                        {{questionary.description}}
                                                     </p>
                                                 </div>
                                             </div>
@@ -157,17 +107,17 @@
                                     <div>
                                         <div class="pull-left btn-show-estrategias">
                                             <button type="button"
-                                                ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
+                                                ng-click="questionary.showQuestions = !questionary.showQuestions"
                                                 class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
-                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"></i>
+                                                    ng-class="{'wb-chevron-down': questionary.showQuestions == false || !questionary.showQuestions , 'wb-chevron-up': questionary.showQuestions == true }"></i>
                                             </button>
                                         </div>
                                     </div>
 
                                     <hr>
 
-                                    <div uib-collapse="archivo.isShowEstrategias">
+                                    <div uib-collapse="!questionary.showQuestions">
                                         <div class="tab-pane animation-fade active margin-top-35" id="all_contacts"
                                             role="tabpanel">
                                             <h4 class="example-title">Preguntas</h4>
@@ -184,184 +134,18 @@
                                                 <div class="alert alert-info alert-dismissible" role="alert"
                                                     ng-if="ng-if"
                                                     archivo.intervenciones.length="archivo.intervenciones.length">
-                                                    <div">
+                                                    <div>
                                                         <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
                                                         No hay preguntas en este cuestionario
-                                                    </div">
-                                                </div>
-
-                                                <li class="question-list">
-                                                    <div class="">
-                                                        <div class="">
-                                                            <h4 class="">
-                                                                ¿Cuantos años tiene Pedro Muriel?
-
-                                                                <small>(Multiple)</small>
-                                                            </h4>
-
-                                                            <div class="row">
-                                                                <div class="col-md-7">
-                                                                    <ul class="">
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">1 año</label>
-                                                                        </li>
-
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">2 años</label>
-                                                                        </li>
-
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">4 años</label>
-                                                                        </li>
-
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">30 años</label>
-                                                                        </li>
-                                                                    </ul>
-
-                                                                    <button type="button" ng-disabled="archivo.id==0"
-                                                                        ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                                        class="btn btn-floating btn-info btn-sm pull-left btn-add-answer">
-                                                                        <i class="icon wb-plus" aria-hidden="true"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                     </div>
-                                                </li>
+                                                </div>
                                             </ul>
                                         </div>
 
                                         <hr>
                                     </div>
                                 </div>
-
-                                <div class="tab-content animation-fade col-md-12 questionary">
-                                    <br>
-
-                                    <div class="alert alert-info alert-dismissible" role="alert"
-                                        ng-if="archivoPersonal.length == 0">
-                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
-
-                                        No hay cuestionarios agregados para este usuario
-                                    </div>
-
-                                    <div class="media is-loading">
-                                        <div class="media-left">
-                                            <img ng-if="archivo.usuarios_codigo" src="/" alt="" class="avatar">
-
-                                            <i></i>
-                                        </div>
-
-                                        <div class="media-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h4 class="media-heading">Cuestionario #2</h4>
-
-                                                    <p class="name" ng-if="archivo.fecha_reporte">
-                                                        Fecha de reporte:
-                                                        {{archivo.fecha_reporte}}
-                                                    </p>
-
-                                                    <p class="name">
-                                                        Descripcion: Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                                                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                                                        aute irure dolor in reprehenderit in voluptate velit esse cillum
-                                                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                                                        cupidatat non proident, sunt in culpa qui officia deserunt
-                                                        mollit anim id est laborum.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <div class="pull-left btn-show-estrategias">
-                                            <button type="button"
-                                                ng-click="archivo.isShowEstrategias = !archivo.isShowEstrategias"
-                                                class="btn btn-outline btn-icon btn-primary btn-round">
-                                                <i class="icon wb-chevron-down" aria-hidden="true"
-                                                    ng-class="{'wb-chevron-down': archivo.isShowEstrategias == false || !archivo.isShowEstrategias , 'wb-chevron-up': archivo.isShowEstrategias == true }"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <hr>
-
-                                    <div uib-collapse="archivo.isShowEstrategias">
-                                        <div class="tab-pane animation-fade active margin-top-35" id="all_contacts"
-                                            role="tabpanel">
-                                            <h4 class="example-title">Preguntas</h4>
-
-                                            <button type="button" ng-disabled="archivo.id==0"
-                                                ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
-                                                <i class="icon wb-plus" aria-hidden="true"></i>
-                                            </button>
-
-                                            <br>
-
-                                            <ul class="list-group">
-                                                <div class="alert alert-info alert-dismissible" role="alert"
-                                                    ng-if="ng-if"
-                                                    archivo.intervenciones.length="archivo.intervenciones.length">
-                                                    <div">
-                                                        <i class="icon  wb-info-circle" aria-hidden="true"></i>
-
-                                                        No hay preguntas en este cuestionario
-                                                    </div">
-                                                </div>
-
-                                                <li class="question-list">
-                                                    <div class="">
-                                                        <div class="">
-                                                            <h4 class="">
-                                                                ¿Cuantos años tiene Pedro Muriel?
-
-                                                                <small>(Multiple)</small>
-                                                            </h4>
-
-                                                            <div class="row">
-                                                                <div class="col-md-7">
-                                                                    <ul class="">
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">1 año</label>
-                                                                        </li>
-
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">2 años</label>
-                                                                        </li>
-
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">4 años</label>
-                                                                        </li>
-
-                                                                        <li class="mb-15">
-                                                                            <label for="inputUnchecked">30 años</label>
-                                                                        </li>
-                                                                    </ul>
-
-                                                                    <button type="button" ng-disabled="archivo.id==0"
-                                                                        ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
-                                                                        class="btn btn-floating btn-info btn-sm pull-left btn-add-answer">
-                                                                        <i class="icon wb-plus" aria-hidden="true"></i>
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <hr>
-                                    </div>
-                                </div>
-
                                 <hr>
                             </uib-tab>
                         </uib-tabset>

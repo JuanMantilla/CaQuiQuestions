@@ -1,20 +1,16 @@
 var controllerModule = angular.module('AppControllers');
 
 controllerModule
-    .controller('mainController', ['$scope', 'toastr', 'jwtHelper', '$rootScope', '$state', 'PermissionStore', 'RoleStore',
-        function ($scope, toastr, jwtHelper, $rootScope, $state, PermissionStore, RoleStore) {
-            //var user =jwtHelper.decodeToken(localStorage.getItem(TOKEN_KEY));
-            // console.log(user);
-            // $scope.isCollapsed = false;
-            // $scope.cerrarSesion = function () {
-            //     localStorage.removeItem(TOKEN_KEY);
-            //     PermissionStore.clearStore();
-            //     RoleStore.clearStore();
-            //     $state.go('login');
-            // };
+    .controller('mainController', ['$scope', 'toastr', 'jwtHelper', '$rootScope', '$state', 'userService',
+        function ($scope, toastr, jwtHelper, $rootScope, $state, userService) {
+            
+            var user = {"id":1}
+            init();
 
-            // $rootScope.getActiveClass = function (state) {
-            //     return ($state.current.name === state) ? 'active' : '';
-            // };
-
+            function init (){
+                userService.getQuestionariesByUser(user.id).then(function (response){
+                    console.log(response.data)
+                    $scope.user = response.data;
+                });
+            }
         }]);

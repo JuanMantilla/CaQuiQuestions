@@ -1,5 +1,5 @@
 var servicesModule = angular.module('AppServices');
-servicesModule.factory('questionaryService', ['$http', function ($http) {
+servicesModule.factory('userService', ['$http', function ($http) {
     return {
         apiUrl: apiUrl,
         getAllAcciones: function () {
@@ -32,9 +32,9 @@ servicesModule.factory('questionaryService', ['$http', function ($http) {
         deleteAccionAplicada: function (accionId) {
             return $http.delete(this.apiUrl + 'accion_aplicada/' + accionId);
         },
-        
-        create: function (questionary) {
-            return $http.post(this.apiUrl + 'questionary', questionary);
+
+        getQuestionariesByUser: function (user_id){
+            return $http.get(this.apiUrl + 'user/' + user_id + '/questionaries');
         },
         
         updateAccionAplicada: function (id, accion) {
