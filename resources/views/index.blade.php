@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="/css/bootstrap-extend.min.css">
 		<link rel="stylesheet" href="/css/site.min.css">
 		<link rel="stylesheet" href="/css/green.min.css">
+		<link rel="stylesheet" href="/css/ownClasses.css">
 		<!-- Plugins -->
 		<link rel="stylesheet" href="/css/v1.css">
 		<link rel="stylesheet" href="/css/profile.min.css">

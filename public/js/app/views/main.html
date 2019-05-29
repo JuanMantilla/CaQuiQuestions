@@ -132,12 +132,11 @@
 
                                             <ul class="list-group">
                                                 <div class="alert alert-info alert-dismissible" role="alert"
-                                                    ng-if="ng-if"
-                                                    archivo.intervenciones.length="archivo.intervenciones.length">
+                                                    ng-if="questionary.questions.length == 0">
                                                     <div>
                                                         <i class="icon  wb-info-circle" aria-hidden="true"></i>
 
-                                                        No hay preguntas en este cuestionario
+                                                        No hay preguntas en este cuestionario <span class="addPointer" ui-sref="main.createQuestion">agregue preguntas ahora</span>
                                                     </div>
                                                 </div>
                                             </ul>
