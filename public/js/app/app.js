@@ -87,6 +87,13 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		controller: 'questionaryController',
 		size: 'lg'
 	});
+	
+	modalStateProvider.state('main.createQuestion', {
+		url: '/create/question/:questionId',
+		templateUrl: '/js/app/views/questionaries/createQuestion.html',
+		controller: 'questionController',
+		size: 'lg'
+	});
 		
 		
 }]);

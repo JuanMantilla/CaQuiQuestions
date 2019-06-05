@@ -8,7 +8,7 @@ class Question extends Model
 {
     protected $table = 'questions';
     protected $fillable = [
-        'value', 'questionarie_id'
+        'value', 'questionary_id', 'correct'
     ];
 
     public function questionary()

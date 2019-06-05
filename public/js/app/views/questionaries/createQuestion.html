@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    </button>
+    <h4 class="modal-title">Agregar pregunta</h4>
+</div>
+<div class="modal-body">
+    <form ng-submit="addQuestiontoQuestionary(question)">
+        <div class="row">
+            <div class="col-lg-12 form-group">
+                <input type="text" class="form-control" ng-model="questionToAdd.value" placeholder="Pregunta">
+
+            </div>
+            <p class="col-lg-12 form-group">
+                Respuestas:
+            </div>
+            <div class="answersPadding">
+                <button ng-click="addAnswer()" type="button" class="btn btn-floating btn-success answerIcon addAnswer">
+                        <i class="icon wb-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div ng-repeat="answer in questionToAdd.answers track by $index">
+                <div class="tab-content animation-fade col-md-10 answersPadding">
+                    <input type="text" class="form-control" ng-model="answer.value" placeholder="Respuesta {{$index + 1}}">
+                </div>
+                <div class="animation-fade col-md-1 radio">
+                        <input type="radio" name="correctAnswer" value=1 ng-model="answer.correct" checked>
+                </div>
+                <div class="tab-content animation-fade col-md-1">
+                    <button ng-click="removeAnswer($index)" type="button" class="btn btn-floating btn-danger answerIcon">
+                            <i class="icon wb-minus" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm-12 pull-right answersPadding">
+                <button class="btn btn-primary btn-outline" data-dismiss="modal" type="submit">Guardar
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

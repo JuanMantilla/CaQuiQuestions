@@ -3,7 +3,6 @@ var controllerModule = angular.module('AppControllers');
 controllerModule
     .controller('questionaryController', ['$scope', 'toastr', '$rootScope', '$state', '$uibModal', 'questionaryService',
         function ($scope, toastr, $rootScope, $state, $uibModal, questionaryService) {
-            console.log("asiduha")
             $scope.questionary = {};
             
             $scope.createQuestionary = function (){

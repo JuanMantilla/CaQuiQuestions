@@ -2,3 +2,18 @@
     cursor: pointer;
     text-decoration: underline;
 }
+
+.answersPadding{
+    padding-bottom: 1rem;
+}
+
+.answerIcon{
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+}
+
+.addQuestionaryPadding{
+    padding-bottom: 8rem;
+    margin: 3rem;
+}

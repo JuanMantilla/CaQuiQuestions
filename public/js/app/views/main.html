@@ -72,10 +72,6 @@
                     <div class="panel-body nav-tabs-animate">
                         <uib-tabset active="">
                             <uib-tab index="0" heading="Questionarios">
-                                <button ui-sref="main.createQuestionary" type="button" class="btn btn-floating btn-danger btn-add-riesgo pull-right">
-                                    <i class="icon wb-plus" aria-hidden="true"></i>
-                                </button>
-
                                 <div class="tab-content animation-fade col-md-12" ng-repeat="questionary in user.questionaries">
 
                                     <div class="alert alert-info alert-dismissible" role="alert"
@@ -94,11 +90,23 @@
 
                                         <div class="media-body">
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-10">
                                                     <h4 class="media-heading">{{questionary.name}}</h4>
                                                     <p class="name">
                                                         {{questionary.description}}
                                                     </p>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" ui-sref="main.createQuestionary({questionaryId:questionary.id})"
+                                                        class="btn btn-floating btn-warning btn-sm">
+                                                            <i class="icon wb-edit" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-1">
+                                                        <button type="button" ng-click="deleteQuestionary(questionary.id)"
+                                                        class="btn btn-floating btn-danger btn-sm">
+                                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -122,8 +130,8 @@
                                             role="tabpanel">
                                             <h4 class="example-title">Preguntas</h4>
 
-                                            <button type="button" ng-disabled="archivo.id==0"
-                                                ui-sref="main.personal.estrategia({archivoId:archivo.id,riesgoId:archivo.riesgo.id})"
+                                            <button ng-if="questionary.questions.length == 0" type="button"
+                                                ui-sref="main.createQuestion({questionaryId:questionary.id})"
                                                 class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
                                                 <i class="icon wb-plus" aria-hidden="true"></i>
                                             </button>
@@ -135,10 +143,35 @@
                                                     ng-if="questionary.questions.length == 0">
                                                     <div>
                                                         <i class="icon  wb-info-circle" aria-hidden="true"></i>
-
-                                                        No hay preguntas en este cuestionario <span class="addPointer" ui-sref="main.createQuestion">agregue preguntas ahora</span>
+                                                        No hay preguntas en este cuestionario <span class="addPointer" 
+                                                        ui-sref="main.createQuestion({questionaryId:questionary.id})">agregue preguntas ahora</span>
                                                     </div>
                                                 </div>
+                                                <ol>
+                                                    <div ng-repeat="question in questionary.questions">
+                                                        <li>
+                                                            {{question.value}}
+                                                            {{question.id}}
+                                                            <button type="button" ui-sref="main.createQuestion({questionId:question.id})"
+                                                                class="btn btn-floating btn-warning btn-sm pull-right">
+                                                                <i class="icon wb-edit" aria-hidden="true"></i>
+                                                            </button>
+                                                            <ol type="A">
+                                                                <div ng-repeat="answer in question.answers">
+                                                                    <li> <p>{{answer.value}} <span ng-if="answer.correct==1"> <i class="icon  wb-check-mini" aria-hidden="false"></i></span> </p></li> 
+                                                                </div>
+                                                            </ol>
+                                                        </li>
+                                                    </div>
+                                                </ol>
+                                                <div>
+                                                    <button ng-if="questionary.questions.length != 0" type="button"
+                                                        ui-sref="main.createQuestion({questionaryId:questionary.id})"
+                                                        class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
+                                                        <i class="icon wb-plus" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                                
                                             </ul>
                                         </div>
 
@@ -147,8 +180,14 @@
                                 </div>
                                 <hr>
                             </uib-tab>
+
                         </uib-tabset>
                     </div>
+                    <div class="addQuestionaryPadding">
+                            <button ui-sref="main.createQuestionary" type="button" class="btn btn-floating btn-success margin-create-questionary pull-right">
+                                <i class="icon wb-plus" aria-hidden="true"></i>
+                            </button>
+                        </div>
                 </div>
 
                 <!-- <uib-tab index="1" heading="Academica">
@@ -175,24 +214,3 @@
         <i class="green-600 wb wb-heart"></i>
     </div>
 </footer>
-
-<script type="text/ng-template" id="alertas.html">
-    <div class="modal-dialog modal-top">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <h4 class="modal-title">{{data.title}}</h4>
-            </div>
-            <div class="modal-body">
-                <div class="" role="alert">
-
-                    <p class="font-size-20"> {{data.text}}</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="cancel()">{{data.cancel}}</button>
-                <button type="button" class="btn btn-primary" ng-click="ok()">{{data.ok}}</button>
-            </div>
-        </div>
-    </div>
-</script>

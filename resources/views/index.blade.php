@@ -72,12 +72,12 @@
 	
 	<script src="/js/app/services/questionary.js"></script>
 	<script src="/js/app/services/user.js"></script>
-
+	<script src="/js/app/services/question.js"></script>
 	<!-- Module Controllers -->
 	<script src="/js/app/controllers/loginController.js"></script>
 	<script src="/js/app/controllers/mainController.js"></script>
 	<script src="/js/app/controllers/questionary.js"></script>
-
+	<script src="/js/app/controllers/questions.js"></script>
 
 	<!-- Module App -->
 
