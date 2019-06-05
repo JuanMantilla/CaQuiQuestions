@@ -10,8 +10,7 @@ class Questions extends Controller
 {
     public function index()
     {
-        $question = Question::all();
-		return response()->json($question);
+		return null;
     }
 
     /**

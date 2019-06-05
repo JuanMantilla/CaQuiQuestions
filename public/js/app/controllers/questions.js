@@ -8,9 +8,10 @@ controllerModule
             init();
 
             function init(){
-                console.log($state.params);
                 questionsService.getQuestionById($state.params.questionId).then(function (response){
-                    $scope.questionToAdd = response.data;
+                    if(response.data){
+                        $scope.questionToAdd = response.data;
+                    }
                 })
             }
             $scope.addQuestiontoQuestionary = function (){
