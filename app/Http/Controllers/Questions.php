@@ -65,7 +65,49 @@ class Questions extends Controller
     {
         $this->question=Question::find($id);
 		$this->question->fill($request->all());
-		$this->question->save();
+        $this->question->save();
+        $this->question->answers = $this->question->answers()->get();
+
+        $answersFromRequest = [];
+        $answersFromDB = [];
+        foreach($request->answers as $answer){
+            $answer = (object) $answer;
+            try {
+                $this->answer=Answer::find($answer->id);
+                $this->answer->value = $answer->value;
+                $this->answer->correct = $answer->correct;
+                $this->answer->save();
+                // dd($this->answer);
+            } catch (\Throwable $th) {
+                $answer->question_id = $this->question->id;
+                $answer = (array) $answer;
+                Answer::create($answer);
+            }
+        }
+        
+        foreach($request->answers as $answerFromRequest){
+            $answerFromRequest = (object) $answerFromRequest;
+            try {
+                $answersFromRequest[$answerFromRequest->id] = $answerFromRequest->value;
+            } catch (\Throwable $th) {
+                continue;
+            }
+                
+        }
+        foreach($this->question->answers as $answerFromDB){
+            $answersFromDB[$answerFromDB->id] = $answerFromDB->value;
+        }
+
+        foreach($this->question->answers as $answer){
+            try {
+                // Trying to find the answer ID from the ones that are already in the DB, if its not found
+                // its because the user deleted it.
+                $answersFromRequest[$answer->id];
+            } catch (\Throwable $th) {
+                $this->answer=Answer::find($answer->id);
+                $this->answer->delete();
+            }
+        }
 		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
     /**

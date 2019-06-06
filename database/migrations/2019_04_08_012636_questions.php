@@ -17,7 +17,7 @@ class Questions extends Migration
             $table->increments('id');
             $table->string('value');
             $table->integer('questionary_id')->unsigned();
-            $table->foreign('questionary_id')->references('id')->on('questionaries');
+            $table->foreign('questionary_id')->references('id')->on('questionaries')->onDelete('cascade');
             $table->timestamps();
         });
     }

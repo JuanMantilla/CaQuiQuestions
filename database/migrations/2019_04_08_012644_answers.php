@@ -18,7 +18,7 @@ class Answers extends Migration
             $table->string('value');
             $table->integer('correct')->default(0);
             $table->integer('question_id')->unsigned();
-            $table->foreign('question_id')->references('id')->on('questions');
+            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();
         });
     }

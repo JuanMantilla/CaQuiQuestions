@@ -16,8 +16,7 @@ class Questionaries extends Controller
     
     public function index()
     {
-        $questionary = Questionary::all();
-		return response()->json($questionary);
+        return null;
     }
 
     /**

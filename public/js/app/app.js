@@ -87,9 +87,32 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		controller: 'questionaryController',
 		size: 'lg'
 	});
+
+	modalStateProvider.state('main.updateQuestionary', {
+		url: '/update/questionary/:questionaryId',
+		templateUrl: '/js/app/views/questionaries/createQuestionary.html',
+		controller: 'questionaryController',
+		size: 'lg'
+	});
+
+	modalStateProvider.state('main.deleteQuestionary', {
+		url: '/questionary/:questionaryId/delete/',
+		templateUrl: '/js/app/views/questionaries/deleteQuestionary.html',
+		controller: 'questionaryController',
+		size: 'md'
+	});
 	
 	modalStateProvider.state('main.createQuestion', {
-		url: '/create/question/:questionId',
+		url: '/questionary/:questionaryId/create/question/',
+		templateUrl: '/js/app/views/questionaries/createQuestion.html',
+		controller: 'questionController',
+		size: 'lg'
+	});
+
+	
+
+	modalStateProvider.state('main.updateQuestion', {
+		url: '/update/question/:questionId',
 		templateUrl: '/js/app/views/questionaries/createQuestion.html',
 		controller: 'questionController',
 		size: 'lg'

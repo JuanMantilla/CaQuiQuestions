@@ -23,6 +23,9 @@ servicesModule.factory('questionsService', ['$http', function ($http) {
         updateAccion: function (id, accion) {
             return $http.put(this.apiUrl + 'accion/' + id, accion);
         },
+        update: function (id, question) {
+            return $http.put(this.apiUrl + 'question/' + id, question);
+        },
         deleteAccion: function (accionId) {
             return $http.delete(this.apiUrl + 'accion/' + accionId);
         },
