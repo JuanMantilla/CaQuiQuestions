@@ -8,3 +8,4 @@
 angular.module('AppControllers',[]);
 angular.module('AppServices',[]);
 angular.module('AppFactories',[]);
+TOKEN_KEY = 'caqui_token';

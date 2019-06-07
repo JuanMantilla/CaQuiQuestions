@@ -32,11 +32,7 @@ servicesModule.factory('userService', ['$http', function ($http) {
         deleteAccionAplicada: function (accionId) {
             return $http.delete(this.apiUrl + 'accion_aplicada/' + accionId);
         },
-
-        getQuestionariesByUser: function (user_id){
-            return $http.get(this.apiUrl + 'user/' + user_id + '/questionaries');
-        },
-        
+     
         updateAccionAplicada: function (id, accion) {
             console.log(accion);
             return $http.put(this.apiUrl + 'accion_aplicada/' + id, accion);

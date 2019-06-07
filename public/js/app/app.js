@@ -65,7 +65,23 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		target: 'body'
 	});
 
-		$urlRouterProvider.otherwise('/login');
+	$httpProvider.interceptors.push(function (toastr, $location, $q, jwtHelper) {
+		return {
+			request: function (conf) {
+				var token = window.localStorage.getItem(TOKEN_KEY);
+				if (token && !jwtHelper.isTokenExpired(token)) {
+
+					conf.headers.Authorization = 'Bearer ' + token;
+				} else {
+
+					window.localStorage.removeItem(TOKEN_KEY);
+					$location.path("/login");
+
+				}
+				return conf;
+			}
+		}
+	});
 
 
 	$stateProvider
@@ -79,7 +95,14 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 			templateUrl: '/js/app/views/login.html',
 			controller: 'loginController',
 			authenticate: false
-		});
+		})
+		.state('register', {
+			url: '/register',
+			templateUrl: '/js/app/views/register.html',
+			controller: 'registerController',
+			authenticate: false
+		})
+		;
 
 	modalStateProvider.state('main.createQuestionary', {
 		url: '/create/questionary',

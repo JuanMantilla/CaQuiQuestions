@@ -2,8 +2,8 @@ var servicesModule = angular.module('AppServices');
 servicesModule.factory('questionaryService', ['$http', function ($http) {
     return {
         apiUrl: apiUrl,
-        getAllAcciones: function () {
-            return $http.get(this.apiUrl + 'accion/');
+        getQuestionaries: function (){
+            return $http.get(this.apiUrl + 'questionary');
         },
         getAccionById: function (accionId) {
             return $http.get(this.apiUrl + 'accion/' + accionId);

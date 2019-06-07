@@ -3,10 +3,10 @@ var controllerModule = angular.module('AppControllers');
 controllerModule
     .controller('mainController', ['$scope', '$confirm', 'toastr', 'jwtHelper', '$rootScope', '$state', 'userService', 'questionaryService','questionsService',
         function ($scope, $confirm, toastr, jwtHelper, $rootScope, $state, userService, questionaryService, questionsService) {
-            var user = {"id":1}
 
             $rootScope.fetchQuestionaries = function (){
-                userService.getQuestionariesByUser(user.id).then(function (response){
+                questionaryService.getQuestionaries().then(function (response){
+                    console.log(response.data);
                     $scope.user = response.data;
                 });
             }
@@ -29,5 +29,10 @@ controllerModule
                     });
                     
                 });
+            }
+
+            $scope.logout = function (){
+                localStorage.removeItem(TOKEN_KEY);
+                $state.go('login');
             }
         }]);

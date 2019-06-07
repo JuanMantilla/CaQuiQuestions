@@ -73,11 +73,14 @@
 	<script src="/js/app/services/questionary.js"></script>
 	<script src="/js/app/services/user.js"></script>
 	<script src="/js/app/services/question.js"></script>
+	<script src="/js/app/services/loginService.js"></script>
+	<script src="/js/app/services/registerService.js"></script>
 	<!-- Module Controllers -->
 	<script src="/js/app/controllers/loginController.js"></script>
 	<script src="/js/app/controllers/mainController.js"></script>
 	<script src="/js/app/controllers/questionary.js"></script>
 	<script src="/js/app/controllers/questions.js"></script>
+	<script src="/js/app/controllers/registerController.js"></script>
 
 	<!-- Module App -->
 

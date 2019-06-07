@@ -3,19 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Questionary;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 use App\User;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Auth;
-
-class Questionaries extends Controller
+class UserController extends Controller
 {
-    
     public function index()
     {
-        $user = User::find(Auth::user()->id);
-        $questionaries = $user->questionaries()->get();
-        return $questionaries;
+		return null;
     }
 
     /**
@@ -26,8 +21,13 @@ class Questionaries extends Controller
      */
     public function store(Request $request)
     {
-        Questionary::create($request->all());
-		return response()->json(["message"=>"Creado correctamente"]);
+        return User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'type' => $request->type,
+            'api_token' => Str::random(60),
+        ]);
     }
     /**
      * Display the specified resource.
@@ -37,10 +37,9 @@ class Questionaries extends Controller
      */
     public function show($id)
     {
-		$this->questionary=Questionary::find($id);
-        return response()->json($this->questionary);
+        $this->user=User::find($id);
+        return response()->json($this->user);
     }
-	
     /**
      * Update the specified resource in storage.
      *
@@ -50,9 +49,10 @@ class Questionaries extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->questionary=Questionary::find($id);
-		$this->questionary->fill($request->all());
-		$this->questionary->save();
+        $this->user=User::find($id);
+		$this->user->fill($request->all());
+        $this->user->save();
+        
 		return response()->json(["mensaje"=>"Actualizacion exitosa"]);
     }
     /**
@@ -63,7 +63,7 @@ class Questionaries extends Controller
      */
     public function destroy($id)
     {
-        $this->questionary=Questionary::find($id);
-        $this->questionary->delete();
+        $this->user=User::find($id);
+        $this->user->delete();
     }
 }

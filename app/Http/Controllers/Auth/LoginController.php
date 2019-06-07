@@ -43,10 +43,8 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect('home');
-        }
-        else{
-            return redirect('/');
+            
+            return response()->json(["user"=>Auth::user()]);
         }
     }
 

@@ -13,14 +13,41 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
 });
+
+// Route::middleware('jwt.auth')->get('users', function () {
+//     return auth('api')->user();
+// });
+
+Route::resource('user', 'UserController');
+Route::get('auth/', 'Auth\LoginController@authenticate');
+
 // Route::match(['post', 'options'], 'api/...', 'Api\XController@method')->middleware('cors');
 // Route::get('user/{id}/questionaries', 'Questionaries@getByUser')->middleware('cors');
-Route::get('user/{id}/questionaries', array('middleware' => 'cors', 'uses' => 'Questionaries@getByUser'));
-Route::get('user/', 'User@get');
-Route::resource('questionary', 'Questionaries');
-Route::resource('question', 'Questions');
-Route::get('question/questions_questionary/{id}', 'Questions@getByQuestionary');
+
+
+
+
+Route::group([
+
+    'middleware' => 'jwt.auth',
+
+], function ($router) {
+    Route::get('user/', 'User@get');
+    Route::resource('questionary', 'Questionaries');
+    Route::resource('question', 'Questions');
+    Route::get('question/questions_questionary/{id}', 'Questions@getByQuestionary');
+});
+
 

@@ -57,6 +57,12 @@
                                 <strong class="profile-stat-count">Correo</strong>
 
                                 <span class="ng-binding">{{user.email}}</span>
+                                <div>
+                                    <button type="button" ng-click="logout()"
+                                        class="btn btn-floating btn-danger btn-sm">
+                                        <i class="icon wb-door" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -91,9 +97,9 @@
                                         </div>
 
                                         <div class="media-body">
-                                            <div class="row" 
-                                            ng-mouseover="user.questionaries[$index].showOptions = true"
-                                            ng-mouseleave="user.questionaries[$index].showOptions = false">
+                                            <div class="row"
+                                                ng-mouseover="user.questionaries[$index].showOptions = true"
+                                                ng-mouseleave="user.questionaries[$index].showOptions = false">
                                                 <div class="col-md-10">
                                                     <h4 class="media-heading">{{questionary.name}}</h4>
                                                     <p class="name">
@@ -110,8 +116,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-md-1">
-                                                        <button type="button"
-                                                            ng-click="deleteQuestionary(questionary)"
+                                                        <button type="button" ng-click="deleteQuestionary(questionary)"
                                                             class="btn btn-floating btn-danger btn-sm">
                                                             <i class="icon wb-trash" aria-hidden="true"></i>
                                                         </button>
@@ -162,12 +167,11 @@
                                                     <div ng-mouseover="question.edit = true"
                                                         ng-mouseleave="question.edit = false" class="questions"
                                                         ng-class="{'question-on-hover':question.edit, 'animation-reverse':!question.edit , 'box-shadow':question.edit}">
-                                                            <button type="button"
-                                                                ng-click="deleteAnswer(question)"
-                                                                ng-hide="!question.edit"
-                                                                class="animation-fade btn btn-icon btn-sm btn-danger pull-right btn-outline btn-round margin-left-10">
-                                                                <i class="icon wb-trash" aria-hidden="true"></i>
-                                                            </button>
+                                                        <button type="button" ng-click="deleteAnswer(question)"
+                                                            ng-hide="!question.edit"
+                                                            class="animation-fade btn btn-icon btn-sm btn-danger pull-right btn-outline btn-round margin-left-10">
+                                                            <i class="icon wb-trash" aria-hidden="true"></i>
+                                                        </button>
                                                         <button type="button"
                                                             ui-sref="main.updateQuestion({questionId:question.id})"
                                                             ng-hide="!question.edit"
