@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     public function index()
     {
-		return null;
+		return  $user = User::find(Auth::user()->id);
     }
 
     /**
@@ -19,7 +21,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function register(Request $request)
     {
         return User::create([
             'name' => $request->name,

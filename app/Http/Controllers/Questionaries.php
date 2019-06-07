@@ -14,7 +14,7 @@ class Questionaries extends Controller
     public function index()
     {
         $user = User::find(Auth::user()->id);
-        $questionaries = $user->questionaries()->get();
+        $questionaries = $user->questionaries()->with('questions.answers')->get();
         return $questionaries;
     }
 

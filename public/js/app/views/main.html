@@ -44,7 +44,7 @@
                     <div class="widget-header">
                         <div class="widget-header-content">
                             <a class="avatar avatar-lg" href="javascript:void(0)">
-                                <img alt="..." src="/img/profile.webp">
+                                <img alt="..." src="/img/man.png">
                             </a>
 
                             <h4 class="profile-user ng-binding">{{user.name}}</h4>
@@ -60,7 +60,7 @@
                                 <div>
                                     <button type="button" ng-click="logout()"
                                         class="btn btn-floating btn-danger btn-sm">
-                                        <i class="icon wb-door" aria-hidden="true"></i>
+                                        <i class="icon wb-power" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                     <div class="panel-body nav-tabs-animate">
                         <uib-tabset active="">
                             <uib-tab index="0" heading="Questionarios">
-                                <div ng-if="user.questionaries.length == 0" class="row">
+                                <div ng-if="questionaries.length == 0" class="row">
                                     <div class="alert alert-info alert-dismissible col-md-12 margin-top-35"
                                         role="alert">
                                         <p>
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-content animation-fade col-md-12"
-                                    ng-repeat="questionary in user.questionaries track by $index">
+                                    ng-repeat="questionary in questionaries track by $index">
                                     <div class="media is-loading">
                                         <div class="media-left">
                                             <img ng-if="archivo.usuarios_codigo" src="/" alt="" class="avatar">
@@ -98,15 +98,15 @@
 
                                         <div class="media-body">
                                             <div class="row"
-                                                ng-mouseover="user.questionaries[$index].showOptions = true"
-                                                ng-mouseleave="user.questionaries[$index].showOptions = false">
+                                                ng-mouseover="questionaries[$index].showOptions = true"
+                                                ng-mouseleave="questionaries[$index].showOptions = false">
                                                 <div class="col-md-10">
                                                     <h4 class="media-heading">{{questionary.name}}</h4>
                                                     <p class="name">
                                                         {{questionary.description}}
                                                     </p>
                                                 </div>
-                                                <div ng-hide="!user.questionaries[$index].showOptions"
+                                                <div ng-hide="!questionaries[$index].showOptions"
                                                     class="animation-fade">
                                                     <div class="col-md-1">
                                                         <button type="button"

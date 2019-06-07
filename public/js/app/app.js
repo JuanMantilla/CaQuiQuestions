@@ -70,20 +70,18 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 			request: function (conf) {
 				var token = window.localStorage.getItem(TOKEN_KEY);
 				if (token && !jwtHelper.isTokenExpired(token)) {
-
 					conf.headers.Authorization = 'Bearer ' + token;
 				} else {
-
 					window.localStorage.removeItem(TOKEN_KEY);
 					$location.path("/login");
-
 				}
 				return conf;
 			}
 		}
 	});
 
-
+	$urlRouterProvider.otherwise('/login');
+	
 	$stateProvider
 		.state('main', {
 			url: '/app',

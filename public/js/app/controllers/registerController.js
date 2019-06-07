@@ -8,12 +8,10 @@ function ($scope, $stateParams, $location, toastr, $rootScope, registerService) 
     $rootScope.usuarios_asign = [];
     $scope.usuario = {};
     $rootScope.roles = [];
-
-    // $rootScope.getAllRoles();
     $scope.register = function () {
         $scope.user.type = "admin";
         registerService.createUser($scope.user).then(function (response) {
-            toastr.success('Exito', 'Usuario creado!');
+            toastr.success('Usuario creado!');
         });
     };
 

@@ -1,15 +1,23 @@
 var controllerModule = angular.module('AppControllers');
 
 controllerModule
-    .controller('mainController', ['$scope', '$confirm', 'toastr', 'jwtHelper', '$rootScope', '$state', 'userService', 'questionaryService','questionsService',
-        function ($scope, $confirm, toastr, jwtHelper, $rootScope, $state, userService, questionaryService, questionsService) {
+    .controller('mainController', ['$scope', '$confirm', 'toastr', 'jwtHelper', '$rootScope', '$state', 'userService', 'questionaryService','questionsService', 'userService',
+        function ($scope, $confirm, toastr, jwtHelper, $rootScope, $state, userService, questionaryService, questionsService, userService) {
+
+            $scope.getAuthUser = function () {
+                    userService.getAuthUser().then( function (response){
+                    $rootScope.user = response.data;
+                });
+            }
 
             $rootScope.fetchQuestionaries = function (){
                 questionaryService.getQuestionaries().then(function (response){
                     console.log(response.data);
-                    $scope.user = response.data;
+                    $scope.questionaries = response.data;
                 });
             }
+            
+            $scope.getAuthUser();
             $rootScope.fetchQuestionaries();
 
             $scope.deleteAnswer = function (question){

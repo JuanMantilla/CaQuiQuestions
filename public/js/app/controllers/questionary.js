@@ -19,7 +19,7 @@ controllerModule
 
             $scope.createQuestionary = function (){
                 if ($scope.newQuestionary){
-                    $scope.questionary.user_id=1;
+                    $scope.questionary.user_id= $rootScope.user.id;
                     $scope.questionary.state=0;
                     if ($scope.questionary.name && $scope.questionary.description){
                         questionaryService.create($scope.questionary).then(function (response){

@@ -23,14 +23,13 @@ Route::group([
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
 });
 
 // Route::middleware('jwt.auth')->get('users', function () {
 //     return auth('api')->user();
 // });
 
-Route::resource('user', 'UserController');
+
 Route::get('auth/', 'Auth\LoginController@authenticate');
 
 // Route::match(['post', 'options'], 'api/...', 'Api\XController@method')->middleware('cors');
@@ -38,13 +37,15 @@ Route::get('auth/', 'Auth\LoginController@authenticate');
 
 
 
+Route::post('user/', 'UserController@register');
 
 Route::group([
 
     'middleware' => 'jwt.auth',
 
 ], function ($router) {
-    Route::get('user/', 'User@get');
+    Route::get('user/', 'UserController@index');
+   
     Route::resource('questionary', 'Questionaries');
     Route::resource('question', 'Questions');
     Route::get('question/questions_questionary/{id}', 'Questions@getByQuestionary');

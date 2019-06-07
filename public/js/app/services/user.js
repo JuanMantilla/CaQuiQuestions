@@ -2,8 +2,8 @@ var servicesModule = angular.module('AppServices');
 servicesModule.factory('userService', ['$http', function ($http) {
     return {
         apiUrl: apiUrl,
-        getAllAcciones: function () {
-            return $http.get(this.apiUrl + 'accion/');
+        getAuthUser: function () {
+            return $http.get(this.apiUrl + 'user/');
         },
         getAccionById: function (accionId) {
             return $http.get(this.apiUrl + 'accion/' + accionId);

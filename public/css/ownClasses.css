@@ -35,3 +35,16 @@
     margin-top: 9px;
     margin-right: -14px;
 }
+
+.page-login:before {
+    background-image: url(../img/cartagena_photo.jpg);
+}
+
+.initial-div{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 3px 20px 10px rgba(0,0,0,0.75);
+    border-radius: 7px;
+    border-radius: 7px;
+    background-color: #7e9abfad;
+}
