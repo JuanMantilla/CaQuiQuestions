@@ -23,6 +23,7 @@ controllerModule
                     $scope.questionary.state=0;
                     if ($scope.questionary.name && $scope.questionary.description){
                         questionaryService.create($scope.questionary).then(function (response){
+                            console.log("cuestionario"+1);
                             toastr.success('Cuestionario creado exitosamente!');
                         }, function (error){
                             toastr.error('Error', error.data);
@@ -38,6 +39,7 @@ controllerModule
                     });
                 }
                 $rootScope.fetchQuestionaries();
+                
                 $state.go("main");
             }
 

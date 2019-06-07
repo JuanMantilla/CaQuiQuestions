@@ -29,18 +29,19 @@ controllerModule
                         if ($scope.newQuestion){
                             $scope.questionToAdd.questionary_id = $state.params.questionaryId;
                             questionsService.create($scope.questionToAdd).then(function (response){
+                                console.log(1);
                                 toastr.success('¡Pregunta agregada exitosamente!');
                                 $scope.questionToAdd = {};
                                 $scope.questionToAdd.answers = [];
-                                $rootScope.fetchQuestionaries();
                             });
                         } else {
                             questionsService.update($scope.questionToAdd.id, $scope.questionToAdd).then(function (response){
                                 toastr.success('¡Pregunta actualizada exitosamente!');
                                 $state.go("main");
-                                $rootScope.fetchQuestionaries();
                             })
                         }
+                        console.log(2);
+                        $rootScope.fetchQuestionaries();
                     } else {
                         toastr.error('Todas las respuestas deben tener un valor.');
                     }
