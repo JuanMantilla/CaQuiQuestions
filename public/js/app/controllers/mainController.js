@@ -12,7 +12,6 @@ controllerModule
 
             $rootScope.fetchQuestionaries = function (){
                 questionaryService.getQuestionaries().then(function (response){
-                    console.log(response.data);
                     $scope.questionaries = response.data;
                 });
             }

@@ -32,14 +32,15 @@ controllerModule
                                 toastr.success('¡Pregunta agregada exitosamente!');
                                 $scope.questionToAdd = {};
                                 $scope.questionToAdd.answers = [];
+                                $rootScope.fetchQuestionaries();
                             });
                         } else {
                             questionsService.update($scope.questionToAdd.id, $scope.questionToAdd).then(function (response){
                                 toastr.success('¡Pregunta actualizada exitosamente!');
                                 $state.go("main");
+                                $rootScope.fetchQuestionaries();
                             })
                         }
-                        $rootScope.fetchQuestionaries();
                     } else {
                         toastr.error('Todas las respuestas deben tener un valor.');
                     }
