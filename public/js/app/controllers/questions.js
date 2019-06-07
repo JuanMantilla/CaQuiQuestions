@@ -9,21 +9,44 @@ controllerModule
             init();
 
             function init(){
-                questionsService.getQuestionById($state.params.questionId).then(function (response){
-                    if(response.data){
+                if ($state.params.questionId){
+                    questionsService.getQuestionById($state.params.questionId).then(function (response){
                         $scope.questionToAdd = response.data;
                         $scope.newQuestion = false;
-                    }
-                })
+                    })
+                }
             }
             $scope.addQuestiontoQuestionary = function (){
-                if ($scope.newQuestion){
-                    $scope.questionToAdd.questionary_id = $state.params.questionaryId;
-                    questionsService.create($scope.questionToAdd);
-                } else {
-                    questionsService.update($scope.questionToAdd.id, $scope.questionToAdd)
+                var answersValid = true;
+                for (var i = 0; i < $scope.questionToAdd.answers.length; i++){
+                    if (!$scope.questionToAdd.answers[i].value){
+                        answersValid = false;
+                        break;
+                    }
                 }
-                
+                if ($scope.questionToAdd.value){
+                    if (answersValid){
+                        if ($scope.newQuestion){
+                            $scope.questionToAdd.questionary_id = $state.params.questionaryId;
+                            questionsService.create($scope.questionToAdd).then(function (response){
+                                toastr.success('¡Pregunta agregada exitosamente!');
+                                $scope.questionToAdd = {};
+                                $scope.questionToAdd.answers = [];
+                            });
+                        } else {
+                            questionsService.update($scope.questionToAdd.id, $scope.questionToAdd).then(function (response){
+                                toastr.success('¡Pregunta actualizada exitosamente!');
+                                $state.go("main");
+                            })
+                        }
+                        $rootScope.fetchQuestionaries();
+                    } else {
+                        toastr.error('Todas las respuestas deben tener un valor.');
+                    }
+                    
+                } else {
+                    toastr.error('Defina una pregunta.');
+                }
             }
 
             $scope.defineCorrectAnswer = function (answer){
@@ -41,7 +64,8 @@ controllerModule
             }
 
             $scope.removeAnswer = function (index){
-                console.log(index)
-                $scope.questionToAdd.answers.pop(index)
+                _.remove($scope.questionToAdd.answers, function(n) {
+                    return $scope.questionToAdd.answers.indexOf(n) == index;
+                });
             }
         }]);

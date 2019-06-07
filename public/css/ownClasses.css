@@ -18,7 +18,20 @@
     margin: 3rem;
 }
 
-.question-on-hover{
-    /* border-top: 1px solid #8fd8e1;
-    padding-top: 1rem; */
+.bold-text{
+    font-weight: bold;
+}
+
+.box-shadow{
+    border: 1px solid #e1e1ea;
+    border-radius: 6px;
+}
+
+.questions{
+    padding: 1rem;
+}
+
+.btn-add-question{
+    margin-top: 9px;
+    margin-right: -14px;
 }

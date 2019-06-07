@@ -121,24 +121,11 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		
 }]);
 
-// questionsApp.run(['$confirmModalDefaults', 'PermissionStore', 'RoleStore', '$rootScope', 'jwtHelper', 'loginService',
-// 	function ($confirmModalDefaults, PermissionStore, RoleStore, $rootScope, jwtHelper, loginService) {
-// 		var token = window.localStorage.getItem(TOKEN_KEY);
-// 		if (token && !jwtHelper.isTokenExpired(token)) {
-
-// 			loginService.getaAuthUser().then(function (response) {
-// 				$rootScope.usuario = response.data;
-// 				var permissions = $rootScope.usuario.permissions;
-// 				//console.log($rootScope.usuario);
-// 				PermissionStore.defineManyPermissions(permissions, function (permissionName) {
-// 					return _.include(permissions, permissionName);
-// 				});
-// 				var rol = $rootScope.usuario.rol;
-// 				RoleStore.defineRole(rol, permissions);
-// 			});
-// 		}
-// 	$confirmModalDefaults.templateUrl = 'alertas.html';
-// 	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
-// 	$confirmModalDefaults.defaultLabels.ok = 'Si';
-// 	$confirmModalDefaults.defaultLabels.cancel = 'No';
-// }]);
+questionsApp.run(['$confirmModalDefaults',
+	function ($confirmModalDefaults) {
+		
+	$confirmModalDefaults.templateUrl = 'alertas.html';
+	$confirmModalDefaults.defaultLabels.title = 'Mensaje del sistema';
+	$confirmModalDefaults.defaultLabels.ok = 'Si';
+	$confirmModalDefaults.defaultLabels.cancel = 'No';
+}]);

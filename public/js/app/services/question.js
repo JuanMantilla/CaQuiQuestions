@@ -38,6 +38,10 @@ servicesModule.factory('questionsService', ['$http', function ($http) {
         deleteAccionAplicada: function (accionId) {
             return $http.delete(this.apiUrl + 'accion_aplicada/' + accionId);
         },
+
+        delete: function (questionId) {
+            return $http.delete(this.apiUrl + 'question/' + questionId);
+        },
         
         create: function (question) {
             return $http.post(this.apiUrl + 'question', question);

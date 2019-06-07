@@ -15,20 +15,35 @@ controllerModule
                         $scope.newQuestionary = false;
                     })
                 }
-                
             }
 
             $scope.createQuestionary = function (){
                 if ($scope.newQuestionary){
                     $scope.questionary.user_id=1;
                     $scope.questionary.state=0;
-                    questionaryService.create($scope.questionary);
+                    if ($scope.questionary.name && $scope.questionary.description){
+                        questionaryService.create($scope.questionary).then(function (response){
+                            toastr.success('Cuestionario creado exitosamente!');
+                        }, function (error){
+                            toastr.error('Error', error.data);
+                        });
+                    } else {
+                        toastr.error('Agregue un nombre y una descipción.');
+                        return;
+                    }
+                    
                 } else {
-                    questionaryService.update($scope.questionary.id, $scope.questionary);
+                    questionaryService.update($scope.questionary.id, $scope.questionary).then(function (response){
+                        toastr.success('¡Cuestionario actualizado exitosamente!');
+                    });
                 }
+                $rootScope.fetchQuestionaries();
+                $state.go("main");
             }
 
             $scope.deleteQuestionary = function() {
                 questionaryService.delete($state.params.questionaryId);
+                $rootScope.fetchQuestionaries();
+                $state.go("main");
             }
         }]);

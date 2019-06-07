@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="tab-content animation-fade col-md-12"
-                                    ng-repeat="questionary in user.questionaries">
+                                    ng-repeat="questionary in user.questionaries track by $index">
                                     <div class="media is-loading">
                                         <div class="media-left">
                                             <img ng-if="archivo.usuarios_codigo" src="/" alt="" class="avatar">
@@ -91,14 +91,17 @@
                                         </div>
 
                                         <div class="media-body">
-                                            <div class="row">
+                                            <div class="row" 
+                                            ng-mouseover="user.questionaries[$index].showOptions = true"
+                                            ng-mouseleave="user.questionaries[$index].showOptions = false">
                                                 <div class="col-md-10">
                                                     <h4 class="media-heading">{{questionary.name}}</h4>
                                                     <p class="name">
                                                         {{questionary.description}}
                                                     </p>
                                                 </div>
-                                                <div ng-hide="!questionary.showQuestions" class="animation-fade">
+                                                <div ng-hide="!user.questionaries[$index].showOptions"
+                                                    class="animation-fade">
                                                     <div class="col-md-1">
                                                         <button type="button"
                                                             ui-sref="main.updateQuestionary({questionaryId:questionary.id})"
@@ -108,7 +111,7 @@
                                                     </div>
                                                     <div class="col-md-1">
                                                         <button type="button"
-                                                            ui-sref="main.deleteQuestionary({questionaryId:questionary.id})"
+                                                            ng-click="deleteQuestionary(questionary)"
                                                             class="btn btn-floating btn-danger btn-sm">
                                                             <i class="icon wb-trash" aria-hidden="true"></i>
                                                         </button>
@@ -122,17 +125,17 @@
                                     <div>
                                         <div class="pull-left btn-show-estrategias">
                                             <button type="button"
-                                                ng-click="questionary.showQuestions = !questionary.showQuestions"
+                                                ng-click="cuestionario[$index].showQuestions = !cuestionario[$index].showQuestions"
                                                 class="btn btn-outline btn-icon btn-primary btn-round">
                                                 <i class="icon wb-chevron-down" aria-hidden="true"
-                                                    ng-class="{'wb-chevron-down': questionary.showQuestions == false || !questionary.showQuestions , 'wb-chevron-up': questionary.showQuestions == true }"></i>
+                                                    ng-class="{'wb-chevron-down': cuestionario[$index].showQuestions == false || !cuestionario[$index].showQuestions , 'wb-chevron-up': cuestionario[$index].showQuestions == true }"></i>
                                             </button>
                                         </div>
                                     </div>
 
                                     <hr>
 
-                                    <div uib-collapse="!questionary.showQuestions">
+                                    <div uib-collapse="!cuestionario[$index].showQuestions">
                                         <div class="tab-pane animation-fade active margin-top-35" id="all_contacts"
                                             role="tabpanel">
                                             <h4 class="example-title">Preguntas</h4>
@@ -155,41 +158,41 @@
                                                             preguntas ahora</span>
                                                     </div>
                                                 </div>
-                                                <ol>
-                                                    <div ng-repeat="question in questionary.questions">
-                                                        <hr ng-if="question.edit" class="animation-slide-left">
-                                                        <div ng-mouseover="question.edit = true"
-                                                            ng-mouseleave="question.edit = false"
-                                                            ng-class="{'question-on-hover':question.edit, 'animation-reverse':!question.edit}">
+                                                <div ng-repeat="question in questionary.questions">
+                                                    <div ng-mouseover="question.edit = true"
+                                                        ng-mouseleave="question.edit = false" class="questions"
+                                                        ng-class="{'question-on-hover':question.edit, 'animation-reverse':!question.edit , 'box-shadow':question.edit}">
                                                             <button type="button"
-                                                                ui-sref="main.updateQuestion({questionId:question.id})"
+                                                                ng-click="deleteAnswer(question)"
                                                                 ng-hide="!question.edit"
-                                                                ng-class="{'animation-scale-down':question.edit}"
-                                                                class="animation-fade btn btn-icon btn-sm btn-info pull-right btn-outline btn-round"><i
-                                                                    class="icon wb-pencil"
-                                                                    aria-hidden="true"></i></button>
-                                                            <li>
-                                                                <p>{{question.value}}</p>
-                                                                <ol type="A">
-                                                                    <div ng-repeat="answer in question.answers">
-                                                                        <li>
-                                                                            <p>{{answer.value}} <span
-                                                                                    ng-if="answer.correct==1"> <i
-                                                                                        class="icon  wb-check-mini"
-                                                                                        aria-hidden="false"></i></span>
-                                                                            </p>
-                                                                        </li>
-                                                                    </div>
-                                                                </ol>
-                                                            </li>
-                                                        </div>
-
+                                                                class="animation-fade btn btn-icon btn-sm btn-danger pull-right btn-outline btn-round margin-left-10">
+                                                                <i class="icon wb-trash" aria-hidden="true"></i>
+                                                            </button>
+                                                        <button type="button"
+                                                            ui-sref="main.updateQuestion({questionId:question.id})"
+                                                            ng-hide="!question.edit"
+                                                            class="animation-fade btn btn-icon btn-sm btn-info pull-right btn-outline btn-round">
+                                                            <i class="icon wb-pencil" aria-hidden="true"></i>
+                                                        </button>
+                                                        <h5>{{questionary.questions.indexOf(question) +1 }})
+                                                            {{question.value}}</h5>
+                                                        <ol type="A">
+                                                            <div ng-repeat="answer in question.answers">
+                                                                <li>
+                                                                    <p>{{answer.value}} <span ng-if="answer.correct==1">
+                                                                            <i class="icon  wb-check-mini"
+                                                                                aria-hidden="false"></i></span>
+                                                                    </p>
+                                                                </li>
+                                                            </div>
+                                                        </ol>
                                                     </div>
-                                                </ol>
+
+                                                </div>
                                                 <div>
                                                     <button ng-if="questionary.questions.length != 0" type="button"
                                                         ui-sref="main.createQuestion({questionaryId:questionary.id})"
-                                                        class="btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
+                                                        class="btn-add-question btn btn-floating btn-success btn-sm btn-add-estrategia pull-right">
                                                         <i class="icon wb-plus" aria-hidden="true"></i>
                                                     </button>
                                                 </div>
@@ -225,6 +228,31 @@
     </div>
 </div>
 
+<script type="text/ng-template" id="alertas.html">
+    <div class="modal-dialog modal-top">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h4 class="modal-title">{{data.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="" role="alert">
+
+                    <p class="font-size-20"> {{data.text}}</p>
+                    <h3 class="text-center"><strong>{{data.value}}</strong></h3>
+                    <div class="alert alert-warning alert-dismissible" role="alert" ng-if="data.warning">
+                        <p><i class="icon wb-info-circle" aria-hidden="true"></i> {{data.warning}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="cancel()">{{data.cancel}}</button>
+                <button type="button" class="btn btn-primary" ng-click="ok()">{{data.ok}}</button>
+            </div>
+        </div>
+    </div>
+
+</script>
 <!-- End Page -->
 <!-- Footer -->
 
