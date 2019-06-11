@@ -37,8 +37,16 @@ class Questionaries extends Controller
      */
     public function show($id)
     {
-		$this->questionary=Questionary::find($id);
-        return response()->json($this->questionary);
+        if (Auth::user()){
+            $this->questionary=Questionary::find($id);
+            return response()->json($this->questionary);
+        } else {
+            $this->questionary = Questionary::find($id);
+            $this->questions = $this->questionary->questions()->with('answers')->get();
+            return response()->json( $this->questions );
+        }
+        
+		
     }
 	
     /**

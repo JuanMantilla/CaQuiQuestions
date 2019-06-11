@@ -38,6 +38,7 @@ Route::get('auth/', 'Auth\LoginController@authenticate');
 
 
 Route::post('user/', 'UserController@register');
+Route::get('questionary/{id}', 'Questionaries@show');
 
 Route::group([
 
@@ -45,8 +46,10 @@ Route::group([
 
 ], function ($router) {
     Route::get('user/', 'UserController@index');
-   
-    Route::resource('questionary', 'Questionaries');
+    Route::get('questionary/', 'Questionaries@index');
+    Route::post('questionary', 'Questionaries@store');
+    Route::delete('questionary/{id}', 'Questionaries@destroy');
+    Route::put('questionary/{id}', 'Questionaries@update');
     Route::resource('question', 'Questions');
     Route::get('question/questions_questionary/{id}', 'Questions@getByQuestionary');
 });

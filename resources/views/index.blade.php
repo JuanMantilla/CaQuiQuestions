@@ -81,6 +81,7 @@
 	<script src="/js/app/controllers/questionary.js"></script>
 	<script src="/js/app/controllers/questions.js"></script>
 	<script src="/js/app/controllers/registerController.js"></script>
+	<script src="/js/app/controllers/answerQuestionary.js"></script>
 
 	<!-- Module App -->
 

@@ -1,0 +1,115 @@
+<div class="page-login layout-full page-dark">
+    <div class="vertical-align text-center">
+        <div class="page-content answer vertical-align-middle animation-slide-top animation-duration-1 initial-div">
+            <div class="brand">
+                <h2 class="brand-text">CaquiQuestions!</h2>
+            </div>
+            <div class="row" ng-if="canAnswer">
+                <div class="col-lg-12 text-center">
+                    <div class="panel text-center">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <h3 class="panel-title">{{questions[currentQuestion].value}}</h3>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="progres-bar-padded progress-bar-margin">
+                                        <div class="panel-actions panel-actions-keep">
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar active progress-bar-striped"
+                                                    ng-style="{'width': ((currentQuestion + 1) / totalQuestions) * 100 + '%'}">
+                                                    <span class="sr-only"><span ng-bind="currentQuestion"></span>/<span
+                                                            ng-bind="totalQuestions"></span>></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-body">
+                            <form name="answerQuestionaryForm">
+                                <div class="wizard-content answering">
+                                    <div ng-repeat="answer in questions[currentQuestion].answers track by $index">
+                                        <input type="radio" ng-model="questionsAnswered[currentQuestion]" value="{{answer.id}}">{{answer.value}}
+                                    </div>
+                                </div>
+                                <div class="wizard-buttons"><a class="btn btn-default btn-outline"
+                                        ng-click="goToPreviousQuestion(currentQuestion)" data-wizard="back" role="button">Back</a><a
+                                        class="btn btn-primary btn-outline float-right" ng-click="goToNextQuestion(questions[currentQuestion].id)"
+                                        data-wizard="next" role="button">Next</a><a
+                                        class="btn btn-success btn-outline float-right hidden-xs-up"
+                                        href="#exampleWizardProgressbar" data-wizard="finish" role="button">Finish</a>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 text-center" ng-if="name">
+                    <div class="panel text-center">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <h3 class="panel-title">{{questions[currentQuestion].value}}</h3>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="progres-bar-padded progress-bar-margin">
+                                        <div class="panel-actions panel-actions-keep">
+                                            <div class="progress progress-xs">
+                                                <div class="progress-bar active progress-bar-striped"
+                                                    ng-style="{'width': ((currentQuestion + 1) / totalQuestions) * 100 + '%'}">
+                                                    <span class="sr-only"><span ng-bind="currentQuestion"></span>/<span
+                                                            ng-bind="totalQuestions"></span>></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="wizard-content answering">
+                                <ol>
+                                    <div ng-repeat="answer in questions[currentQuestion].answers">
+                                        <li class="">{{answer.value}}</li>
+                                    </div>
+                                </ol>
+                            </div>
+                            <div class="wizard-buttons"><a class="btn btn-default btn-outline"
+                                    ng-click="goToPreviousQuestion()" data-wizard="back" role="button">Back</a><a
+                                    class="btn btn-primary btn-outline float-right" ng-click="goToNextQuestion()"
+                                    data-wizard="next" role="button">Next</a><a
+                                    class="btn btn-success btn-outline float-right hidden-xs-up"
+                                    href="#exampleWizardProgressbar" data-wizard="finish" role="button">Finish</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="!canAnswer">
+                <div class="col-lg-12 text-center">
+                    <div class="panel text-center">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <h3 class="panel-title">Ingresa tu nombre</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="wizard-content col-lg-12">
+                                        <input type="text" ng-model='user.name'>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="wizard-buttons">
+                                        <a class="btn btn-primary btn-outline" ng-click="initQuestionary()">Iniciar
+                                            cuestionario</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

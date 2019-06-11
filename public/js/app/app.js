@@ -19,7 +19,6 @@ var questionsApp = angular.module("questionsApp", [
 	'ngSanitize',
 	'ngCsv',
 	'chart.js'
-
 ]);
 
 questionsApp.provider('modalState', function ($stateProvider) {
@@ -66,18 +65,18 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 	});
 
 	$httpProvider.interceptors.push(function (toastr, $location, $q, jwtHelper) {
-		return {
-			request: function (conf) {
-				var token = window.localStorage.getItem(TOKEN_KEY);
-				if (token && !jwtHelper.isTokenExpired(token)) {
-					conf.headers.Authorization = 'Bearer ' + token;
-				} else {
-					window.localStorage.removeItem(TOKEN_KEY);
-					$location.path("/login");
+			return {
+				request: function (conf) {
+					var token = window.localStorage.getItem(TOKEN_KEY);
+					if (token && !jwtHelper.isTokenExpired(token)) {
+						conf.headers.Authorization = 'Bearer ' + token;
+					} else if (!$location.path().includes('answer-questionary')){
+						window.localStorage.removeItem(TOKEN_KEY);
+						$location.path("/login");
+					}
+					return conf;
 				}
-				return conf;
-			}
-		}
+			}		
 	});
 
 	$urlRouterProvider.otherwise('/login');
@@ -86,7 +85,8 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		.state('main', {
 			url: '/app',
 			templateUrl: '/js/app/views/main.html',
-			controller: 'mainController'
+			controller: 'mainController',
+			authenticate: true
 		})
 		.state('login', {
 			url: '/login',
@@ -98,6 +98,13 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 			url: '/register',
 			templateUrl: '/js/app/views/register.html',
 			controller: 'registerController',
+			authenticate: false
+		})
+
+		.state('answer_questionary', {
+			url: '/answer-questionary/:questionaryId',
+			templateUrl: '/js/app/views/questionaries/answerQuestionary.html',
+			controller: 'answerQuestionaryController',
 			authenticate: false
 		})
 		;
@@ -138,6 +145,15 @@ questionsApp.config(['$stateProvider', '$urlRouterProvider', 'toastrConfig', '$l
 		controller: 'questionController',
 		size: 'lg'
 	});
+
+	modalStateProvider.state('main.pubblishQuestionary', {
+		url: '/publishQuestionary/:questionaryId',
+		templateUrl: '/js/app/views/questionaries/publish.html',
+		controller: 'questionaryController',
+		size: 'md'
+	});
+
+	
 		
 		
 }]);

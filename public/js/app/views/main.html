@@ -100,7 +100,7 @@
                                             <div class="row"
                                                 ng-mouseover="questionaries[$index].showOptions = true"
                                                 ng-mouseleave="questionaries[$index].showOptions = false">
-                                                <div class="col-md-10">
+                                                <div class="col-md-9">
                                                     <h4 class="media-heading">{{questionary.name}}</h4>
                                                     <p class="name">
                                                         {{questionary.description}}
@@ -108,16 +108,23 @@
                                                 </div>
                                                 <div ng-hide="!questionaries[$index].showOptions"
                                                     class="animation-fade">
-                                                    <div class="col-md-1">
+                                                    <div class="col-md-1 first-options-button">
                                                         <button type="button"
                                                             ui-sref="main.updateQuestionary({questionaryId:questionary.id})"
-                                                            class="btn btn-floating btn-warning btn-sm">
+                                                            class="btn btn-icon btn-warning btn-round">
                                                             <i class="icon wb-edit" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-md-1 second-options-button">
+                                                        <button type="button"
+                                                            ui-sref="main.pubblishQuestionary({questionaryId:questionary.id})"
+                                                            class="btn btn-icon btn-success btn-round">
+                                                            <i class="icon wb-play" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <button type="button" ng-click="deleteQuestionary(questionary)"
-                                                            class="btn btn-floating btn-danger btn-sm">
+                                                            class="btn btn-icon btn-danger btn-round">
                                                             <i class="icon wb-trash" aria-hidden="true"></i>
                                                         </button>
                                                     </div>

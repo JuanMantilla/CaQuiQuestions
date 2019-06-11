@@ -48,3 +48,29 @@
     border-radius: 7px;
     background-color: #7e9abfad;
 }
+
+.first-options-button{
+    display: block;
+    left: 10.7rem;
+}
+
+.second-options-button{
+    display: block;
+    left: 5.5rem;
+}
+
+.answer{
+    color: black;
+    min-width: 55rem;
+    max-width: 101rem;
+}
+
+.answering { 
+    text-align: left;
+}
+
+.progress-bar-margin {
+    position: relative;
+    margin-top: 3rem;
+}
+

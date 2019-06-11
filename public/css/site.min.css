@@ -690,8 +690,6 @@ body.site-gridmenu-active {
 
 .page {
 	position: relative;
-	min-height: -webkit-calc(100% - 44px);
-	min-height: calc(100% - 44px);
 	background: #f1f4f5
 }
 
