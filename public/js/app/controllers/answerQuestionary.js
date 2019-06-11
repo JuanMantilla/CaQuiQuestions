@@ -8,24 +8,26 @@ controllerModule
             $scope.finalQuestionary = JSON.parse(window.localStorage.getItem('QUESTIONARY'));
             $scope.canAnswer = false;
             $scope.questionsAnswered = [];
+            $scope.currentQuestion = 0;
             init();
             function init() {
                 questionaryService.getQuestionaryById($state.params.questionaryId).then(function (response) {
-                    $scope.questions = response.data;
+                    $scope.questions = response.data.questions;
+                    $scope.published = response.data.published;
                     $scope.newQuestionary = false;
                     if ($scope.user) {
                         $scope.canAnswer = true;
                         if ($scope.finalQuestionary){
                             $scope.currentQuestion =  parseInt(window.localStorage.getItem('CURRENT_QUESTION'));
                         } else {
-                            $scope.currentQuestion = 0;
                             $scope.finalQuestionary = [];
                         }
                     } else {
                         $scope.user = {};
                         $scope.finalQuestionary = [];
-                        $scope.currentQuestion = 0;
                     }
+                    console.log($scope.questions);
+                    console.log($scope.questions[$scope.currentQuestion]);
                     $scope.totalQuestions = $scope.questions.length;
                 })
             }

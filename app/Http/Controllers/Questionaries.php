@@ -43,7 +43,8 @@ class Questionaries extends Controller
         } else {
             $this->questionary = Questionary::find($id);
             $this->questions = $this->questionary->questions()->with('answers')->get();
-            return response()->json( $this->questions );
+            $myArr = array("questions" => $this->questions , "published" => $this->questionary->state);
+            return response()->json($myArr);
         }
         
 		
